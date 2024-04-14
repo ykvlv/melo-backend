@@ -12,13 +12,15 @@
 
     <groupId>dev.ykvlv</groupId>
     <artifactId>melo</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
 
     <packaging>pom</packaging>
     <modules>
-        <module>melo-commons</module>
-        <module>melo-domain</module>
+        <module>commons</module>
+        <module>domain</module>
         <module>melo-application</module>
+        <module>melo-parser</module>
+        <module>migration</module>
     </modules>
 
 	<properties>

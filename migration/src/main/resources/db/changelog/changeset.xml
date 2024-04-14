@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <property name="text100" value="text" dbms="postgresql"/>
+    <property name="text100" value="varchar2(100)" dbms="h2"/>
+    <property name="text300" value="text" dbms="postgresql"/>
+    <property name="text300" value="varchar2(300)" dbms="h2"/>
+
+    <property name="long" value="bigint" dbms="postgresql,h2"/>
+    <property name="int" value="int" dbms="postgresql,h2"/>
+    <property name="short" value="smallint" dbms="postgresql,h2"/>
+    <property name="timestamp" value="timestamp" dbms="postgresql,h2"/>
+
+    <include file="1.0.0/master.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>
