@@ -10,20 +10,16 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "city")
-public class City {
+@Table(name = "artist")
+public class Artist {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "city_id_seq")
-    @SequenceGenerator(sequenceName = "city_id_seq", name = "city_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "artist_id_seq")
+    @SequenceGenerator(sequenceName = "artist_id_seq", name = "artist_id_seq", allocationSize = 1)
     private Long id;
 
     @NonNull
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "timezone")
-    private String timezone;
-
 }

@@ -1,8 +1,7 @@
 package dev.ykvlv.melo.application.controller;
 
-import dev.ykvlv.melo.application.service.ConcertService;
-import dev.ykvlv.melo.commons.response.ConcertResponse;
-import io.swagger.v3.oas.annotations.Operation;
+import dev.ykvlv.melo.application.service.EventService;
+import dev.ykvlv.melo.commons.response.EventResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/concert")
-public class ConcertController {
+@RequestMapping(value = "/api/event")
+public class EventController {
 
-    private final ConcertService concertService;
+    private final EventService eventService;
 
-    @Operation(summary = "Получить концерт по id")
     @GetMapping("/{id}")
-    public ResponseEntity<ConcertResponse> read(@PathVariable("id") Long id) {
+    public ResponseEntity<EventResponse> read(@PathVariable("id") Long id) {
         return new ResponseEntity<>(
-                concertService.read(id),
+                eventService.read(id),
                 HttpStatus.OK
         );
     }

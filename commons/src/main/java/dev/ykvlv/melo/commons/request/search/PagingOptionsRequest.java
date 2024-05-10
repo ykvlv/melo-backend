@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class PagingOptionsDTO {
+public class PagingOptionsRequest {
 
     @NotNull(message = "Номер страницы должен быть указан")
     @Min(value = 0, message = "Номер страницы должен быть не менее 0")
@@ -26,6 +26,6 @@ public class PagingOptionsDTO {
     @Valid
     @NotNull(message = "Параметры сортировки должны быть указаны")
     @JsonProperty("sortingOption")
-    private List<SortingOptionsDTO> sortingOptionDTOs;
+    private List<SortingOptionsRequest> sortingOptionsRequests;
 
 }

@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "melo.parser.afisha.headers.X-Parent-Request-Id",
+      "type": "java.lang.String",
+      "description": "Яндекс без этого хедера не может."
+    },
+    {
+      "name": "melo.parser.afisha.headers.Accept",
+      "type": "java.lang.String",
+      "description": "Ну потом куда-нибудь может и перенесу."
+    }
+  ]
+}

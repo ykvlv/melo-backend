@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SortingOptionsDTO {
+public class SortingOptionsRequest {
 
     @NullOrNotBlank(message = "Имя атрибута сортировки может отсутствовать но не должно быть пустым")
     private String attributeName;

@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class ConcertResponse {
+public class EventResponse {
 
     @NonNull
     private Long id;
