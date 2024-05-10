@@ -9,6 +9,5 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public abstract class EventMapper {
 
-    @NonNull
-    public abstract EventResponse map(@NonNull Event entity);
+    public abstract EventResponse map(Event entity);
 }
