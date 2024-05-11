@@ -1,5 +1,6 @@
 package dev.ykvlv.melo.application.security;
 
+import dev.ykvlv.melo.application.config.Constants;
 import dev.ykvlv.melo.application.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,8 +24,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    public static final String BEARER_PREFIX = "Bearer ";
-    public static final String HEADER_NAME = "Authorization";
     private final JwtUtil jwtUtil;
     private final UserService userService;
 
@@ -33,14 +33,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
 
         // Получаем токен из заголовка
-        var authHeader = request.getHeader(HEADER_NAME);
-        if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, BEARER_PREFIX)) {
+        var authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, Constants.BEARER)) {
             filterChain.doFilter(request, response);
             return;
         }
 
         // Обрезаем префикс и получаем имя пользователя из токена
-        var jwt = authHeader.substring(BEARER_PREFIX.length());
+        var jwt = authHeader.substring(Constants.BEARER.length());
         var username = jwtUtil.extractUserName(jwt);
 
         if (StringUtils.isNotEmpty(username) && SecurityContextHolder.getContext().getAuthentication() == null) {

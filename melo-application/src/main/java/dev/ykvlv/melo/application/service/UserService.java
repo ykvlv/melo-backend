@@ -32,4 +32,6 @@ public interface UserService extends UserDetailsService {
      * @return true, если пользователь существует
      */
     boolean existsByUsername(@NonNull String username);
+
+    void changeYaMusicCredentials(@NonNull String username, @NonNull String yaMusicCredentials);
 }

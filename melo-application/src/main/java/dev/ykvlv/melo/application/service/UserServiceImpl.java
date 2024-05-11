@@ -2,9 +2,7 @@ package dev.ykvlv.melo.application.service;
 
 import dev.ykvlv.melo.application.exception.BEWrapper;
 import dev.ykvlv.melo.application.exception.BusinessException;
-import dev.ykvlv.melo.commons.response.EventResponse;
 import dev.ykvlv.melo.commons.response.UserResponse;
-import dev.ykvlv.melo.domain.entity.Event;
 import dev.ykvlv.melo.domain.entity.User;
 import dev.ykvlv.melo.domain.mapper.UserMapper;
 import dev.ykvlv.melo.domain.repository.UserRepository;
@@ -46,6 +44,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsByUsername(username);
     }
 
+    @Override
+    public void changeYaMusicCredentials(@NonNull String username, @NonNull String yaMusicCredentials) {
+        User user = getByUsername(username);
+        user.setYaMusicCredentials(yaMusicCredentials);
+        userRepository.save(user);
+    }
 
     @NonNull
     @Override

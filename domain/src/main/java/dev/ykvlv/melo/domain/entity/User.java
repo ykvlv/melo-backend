@@ -38,6 +38,9 @@ public class User implements UserDetails {
     @Column(name = "registered_at", nullable = false)
     private LocalDate registeredAt;
 
+    @Column(name = "ya_music_credentials")
+    private String yaMusicCredentials;
+
     @NonNull
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)

@@ -11,4 +11,10 @@ public class MeloProperties {
     @NonNull
     private String jwtSecret;
 
+    @NonNull
+    private String yaMusicClientId;
+
+    @NonNull
+    private String yaMusicClientSecret;
+
 }
