@@ -22,4 +22,7 @@ public class Artist {
     @NonNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "photo_url")
+    private String photoUrl;
 }

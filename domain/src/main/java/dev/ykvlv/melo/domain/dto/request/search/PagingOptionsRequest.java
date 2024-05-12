@@ -1,4 +1,4 @@
-package dev.ykvlv.melo.commons.request.search;
+package dev.ykvlv.melo.domain.dto.request.search;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;

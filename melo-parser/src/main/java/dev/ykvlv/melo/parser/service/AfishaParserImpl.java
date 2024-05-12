@@ -1,10 +1,10 @@
 package dev.ykvlv.melo.parser.service;
 
-import dev.ykvlv.melo.commons.parser.EventData;
+import dev.ykvlv.melo.domain.dto.parser.EventData;
 import dev.ykvlv.melo.domain.mapper.ParserMapper;
 import dev.ykvlv.melo.parser.MeloParserProperties;
-import dev.ykvlv.melo.commons.parser.AfishaCities;
-import dev.ykvlv.melo.commons.parser.AfishaEvents;
+import dev.ykvlv.melo.domain.dto.parser.AfishaCities;
+import dev.ykvlv.melo.domain.dto.parser.AfishaEvents;
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;

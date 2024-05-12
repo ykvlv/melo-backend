@@ -1,4 +1,4 @@
-package dev.ykvlv.melo.commons.response;
+package dev.ykvlv.melo.domain.dto.response;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -6,9 +6,9 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class JwtAuthenticationResponse {
+public class EventResponse {
 
     @NonNull
-    private String token;
+    private Long id;
 
 }

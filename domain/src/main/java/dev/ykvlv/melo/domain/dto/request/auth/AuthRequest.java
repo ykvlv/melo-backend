@@ -1,4 +1,4 @@
-package dev.ykvlv.melo.commons.request.auth;
+package dev.ykvlv.melo.domain.dto.request.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

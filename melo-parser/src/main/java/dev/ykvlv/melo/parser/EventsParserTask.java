@@ -1,7 +1,7 @@
 package dev.ykvlv.melo.parser;
 
 import dev.ykvlv.melo.parser.service.ParserStrategy;
-import dev.ykvlv.melo.commons.parser.ParserType;
+import dev.ykvlv.melo.domain.dto.parser.ParserType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package dev.ykvlv.melo.parser.service;
 
-import dev.ykvlv.melo.commons.parser.EventData;
+import dev.ykvlv.melo.domain.dto.parser.EventData;
 import dev.ykvlv.melo.domain.entity.Artist;
 import dev.ykvlv.melo.domain.entity.City;
 import dev.ykvlv.melo.domain.entity.Event;

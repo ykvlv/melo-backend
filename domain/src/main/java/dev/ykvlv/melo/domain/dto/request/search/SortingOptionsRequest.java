@@ -1,6 +1,6 @@
-package dev.ykvlv.melo.commons.request.search;
+package dev.ykvlv.melo.domain.dto.request.search;
 
-import dev.ykvlv.melo.commons.validator.NullOrNotBlank;
+import dev.ykvlv.melo.domain.dto.validator.NullOrNotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

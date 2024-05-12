@@ -1,4 +1,4 @@
-package dev.ykvlv.melo.commons.validator;
+package dev.ykvlv.melo.domain.dto.validator;
 
 import jakarta.validation.*;
 

@@ -1,6 +1,6 @@
 package dev.ykvlv.melo.application.service;
 
-import dev.ykvlv.melo.commons.response.EventResponse;
+import dev.ykvlv.melo.domain.dto.response.EventResponse;
 import lombok.NonNull;
 
 public interface EventService {

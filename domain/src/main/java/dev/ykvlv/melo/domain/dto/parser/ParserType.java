@@ -1,4 +1,4 @@
-package dev.ykvlv.melo.commons.parser;
+package dev.ykvlv.melo.domain.dto.parser;
 
 public interface ParserType {
 

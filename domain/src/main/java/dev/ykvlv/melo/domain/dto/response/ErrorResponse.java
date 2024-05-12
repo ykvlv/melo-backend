@@ -1,4 +1,4 @@
-package dev.ykvlv.melo.commons.response;
+package dev.ykvlv.melo.domain.dto.response;
 
 import lombok.Getter;
 import lombok.NonNull;

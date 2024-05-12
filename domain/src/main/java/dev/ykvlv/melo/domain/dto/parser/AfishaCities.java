@@ -1,4 +1,4 @@
-package dev.ykvlv.melo.commons.parser;
+package dev.ykvlv.melo.domain.dto.parser;
 
 import lombok.Data;
 import java.util.ArrayList;
