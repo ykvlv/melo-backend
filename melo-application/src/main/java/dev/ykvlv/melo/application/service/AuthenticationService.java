@@ -1,7 +1,7 @@
 package dev.ykvlv.melo.application.service;
 
-import dev.ykvlv.melo.domain.dto.request.auth.AuthRequest;
-import dev.ykvlv.melo.domain.dto.response.auth.JwtAuthenticationResponse;
+import dev.ykvlv.melo.commons.request.auth.AuthRequest;
+import dev.ykvlv.melo.commons.response.auth.JwtAuthenticationResponse;
 import lombok.NonNull;
 
 public interface AuthenticationService {

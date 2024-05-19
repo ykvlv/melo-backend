@@ -1,7 +1,7 @@
 package dev.ykvlv.melo.application.service;
 
-import dev.ykvlv.melo.domain.dto.response.UserResponse;
-import dev.ykvlv.melo.domain.dto.response.music.MusicServiceResponse;
+import dev.ykvlv.melo.commons.response.UserResponse;
+import dev.ykvlv.melo.commons.response.music.MusicServiceResponse;
 import dev.ykvlv.melo.domain.entity.User;
 import lombok.NonNull;
 import org.springframework.security.core.userdetails.UserDetailsService;

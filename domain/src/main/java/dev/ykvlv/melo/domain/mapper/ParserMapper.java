@@ -1,7 +1,7 @@
 package dev.ykvlv.melo.domain.mapper;
 
-import dev.ykvlv.melo.domain.dto.parser.AfishaEvents;
-import dev.ykvlv.melo.domain.dto.parser.EventData;
+import dev.ykvlv.melo.commons.parser.AfishaEvents;
+import dev.ykvlv.melo.commons.parser.EventData;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

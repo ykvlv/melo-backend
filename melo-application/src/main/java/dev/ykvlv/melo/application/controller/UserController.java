@@ -1,13 +1,12 @@
 package dev.ykvlv.melo.application.controller;
 
 import dev.ykvlv.melo.application.service.UserService;
-import dev.ykvlv.melo.domain.dto.response.UserResponse;
-import dev.ykvlv.melo.domain.dto.response.music.MusicServiceResponse;
+import dev.ykvlv.melo.commons.response.UserResponse;
+import dev.ykvlv.melo.commons.response.music.MusicServiceResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

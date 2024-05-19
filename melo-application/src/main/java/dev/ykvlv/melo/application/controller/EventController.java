@@ -1,7 +1,7 @@
 package dev.ykvlv.melo.application.controller;
 
 import dev.ykvlv.melo.application.service.EventService;
-import dev.ykvlv.melo.domain.dto.response.EventResponse;
+import dev.ykvlv.melo.commons.response.EventResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -35,11 +35,20 @@ public class User implements UserDetails {
     private String password;
 
     @NonNull
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
+
+    @NonNull
     @Column(name = "registered_at", nullable = false)
     private LocalDate registeredAt;
 
     @Column(name = "ya_music_credentials")
     private String yaMusicCredentials;
+
+    @Column(name = "vk_music_credentials")
+    private String vkMusicCredentials;
 
     @NonNull
     @Enumerated(EnumType.STRING)

@@ -1,6 +1,6 @@
 package dev.ykvlv.melo.domain.mapper;
 
-import dev.ykvlv.melo.domain.dto.response.EventResponse;
+import dev.ykvlv.melo.commons.response.EventResponse;
 import dev.ykvlv.melo.domain.entity.Event;
 import org.mapstruct.Mapper;
 
@@ -8,4 +8,5 @@ import org.mapstruct.Mapper;
 public abstract class EventMapper {
 
     public abstract EventResponse map(Event entity);
+
 }

@@ -1,6 +1,6 @@
 package dev.ykvlv.melo.domain.mapper;
 
-import dev.ykvlv.melo.domain.dto.response.ArtistResponse;
+import dev.ykvlv.melo.commons.response.ArtistResponse;
 import dev.ykvlv.melo.domain.entity.Artist;
 import org.mapstruct.Mapper;
 

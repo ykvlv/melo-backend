@@ -38,4 +38,13 @@ public class Event {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
+    @Column(name = "photo_url")
+    private String photoUrl;
+
+    @Column(name = "afisha_url")
+    private String afishaUrl;
+
+    @Column(name = "kassir_url")
+    private String kassirUrl;
+
 }

@@ -1,6 +1,6 @@
 package dev.ykvlv.melo.application.exception;
 
-import dev.ykvlv.melo.domain.dto.response.ErrorResponse;
+import dev.ykvlv.melo.commons.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

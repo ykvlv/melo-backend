@@ -2,10 +2,9 @@ package dev.ykvlv.melo.application.service;
 
 import dev.ykvlv.melo.application.exception.BEWrapper;
 import dev.ykvlv.melo.application.exception.BusinessException;
-import dev.ykvlv.melo.domain.dto.response.ArtistResponse;
-import dev.ykvlv.melo.domain.dto.response.UserResponse;
-import dev.ykvlv.melo.domain.dto.response.music.MusicServiceResponse;
-import dev.ykvlv.melo.domain.entity.Artist;
+import dev.ykvlv.melo.commons.response.ArtistResponse;
+import dev.ykvlv.melo.commons.response.UserResponse;
+import dev.ykvlv.melo.commons.response.music.MusicServiceResponse;
 import dev.ykvlv.melo.domain.entity.User;
 import dev.ykvlv.melo.domain.mapper.ArtistMapper;
 import dev.ykvlv.melo.domain.mapper.UserMapper;

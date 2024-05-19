@@ -3,9 +3,10 @@ package dev.ykvlv.melo.application.service;
 import dev.ykvlv.melo.application.exception.BEWrapper;
 import dev.ykvlv.melo.application.exception.BusinessException;
 import dev.ykvlv.melo.application.security.JwtUtil;
-import dev.ykvlv.melo.domain.dto.request.auth.AuthRequest;
-import dev.ykvlv.melo.domain.dto.response.auth.JwtAuthenticationResponse;
+import dev.ykvlv.melo.commons.request.auth.AuthRequest;
+import dev.ykvlv.melo.commons.response.auth.JwtAuthenticationResponse;
 import dev.ykvlv.melo.domain.entity.User;
+import dev.ykvlv.melo.domain.repository.CityRepository;
 import dev.ykvlv.melo.domain.type.Role;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final CityRepository cityRepository;
 
     @NonNull
     public JwtAuthenticationResponse signUp(@NonNull AuthRequest request) {
@@ -31,6 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .registeredAt(LocalDate.now())
+                .city(cityRepository.getReferenceById(1L))
                 .role(Role.USER)
                 .build();
 

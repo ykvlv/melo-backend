@@ -1,8 +1,8 @@
 package dev.ykvlv.melo.application.controller;
 
 import dev.ykvlv.melo.application.service.AuthenticationService;
-import dev.ykvlv.melo.domain.dto.request.auth.AuthRequest;
-import dev.ykvlv.melo.domain.dto.response.auth.JwtAuthenticationResponse;
+import dev.ykvlv.melo.commons.request.auth.AuthRequest;
+import dev.ykvlv.melo.commons.response.auth.JwtAuthenticationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

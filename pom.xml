@@ -16,9 +16,9 @@
 
     <packaging>pom</packaging>
     <modules>
+        <module>commons</module>
         <module>domain</module>
         <module>melo-application</module>
-        <module>melo-parser</module>
         <module>migration</module>
     </modules>
 
