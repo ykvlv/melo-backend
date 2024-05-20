@@ -42,7 +42,8 @@ public class SearchEventService {
         return new SliceImpl<>(hasNext ? events.subList(0, pageRequest.getPageSize()) : events, pageRequest, hasNext);
     }
 
-    private CriteriaQuery<Event> createCriteriaQuery(SearchEventsRequest request, User user) {
+    private CriteriaQuery<Event> createCriteriaQuery(SearchEventsRequest request,
+                                                     User user) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Event> cq = builder.createQuery(Event.class);
 		cq.distinct(true);

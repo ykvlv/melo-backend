@@ -19,16 +19,6 @@ public class AuthController {
     private final YaMusicService yaMusicService;
     private final UserService userService;
 
-    @PostMapping("/sign-up")
-    public JwtAuthenticationResponse signUp(@Validated @RequestBody AuthRequest request) {
-        return authenticationService.signUp(request);
-    }
-
-    @PostMapping("/sign-in")
-    public JwtAuthenticationResponse signIn(@Validated @RequestBody AuthRequest request) {
-        return authenticationService.signIn(request);
-    }
-
     @GetMapping("/yandex")
     public ResponseEntity<String> yandex(@RequestParam String code, @RequestParam String state) {
         // Получаем токен
@@ -41,6 +31,16 @@ public class AuthController {
         userService.changeYaMusicCredentials(state, userLogin);
 
         return ResponseEntity.ok("Подключено: " + userLogin);
+    }
+
+    @PostMapping("/sign-up")
+    public JwtAuthenticationResponse signUp(@Validated @RequestBody AuthRequest request) {
+        return authenticationService.signUp(request);
+    }
+
+    @PostMapping("/sign-in")
+    public JwtAuthenticationResponse signIn(@Validated @RequestBody AuthRequest request) {
+        return authenticationService.signIn(request);
     }
 
     @GetMapping("/vk")
