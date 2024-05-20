@@ -2,7 +2,7 @@ package dev.ykvlv.melo.domain.repository;
 
 import dev.ykvlv.melo.domain.entity.User;
 import dev.ykvlv.melo.domain.entity.UserFavoriteArtists;
-import dev.ykvlv.melo.domain.type.MusicService;
+import dev.ykvlv.melo.commons.type.MusicService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

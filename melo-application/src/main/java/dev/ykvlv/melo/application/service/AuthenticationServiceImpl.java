@@ -7,7 +7,7 @@ import dev.ykvlv.melo.commons.request.auth.AuthRequest;
 import dev.ykvlv.melo.commons.response.auth.JwtAuthenticationResponse;
 import dev.ykvlv.melo.domain.entity.User;
 import dev.ykvlv.melo.domain.repository.CityRepository;
-import dev.ykvlv.melo.domain.type.Role;
+import dev.ykvlv.melo.commons.type.Role;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

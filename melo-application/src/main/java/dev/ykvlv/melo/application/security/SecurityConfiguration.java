@@ -45,7 +45,7 @@ public class SecurityConfiguration {
                 // Настройка доступа к конечным точкам
                 .authorizeHttpRequests(request -> request
                         // TODO настроить
-                        .requestMatchers("/api/auth/**", "/api/music/**").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/endpoint", "/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())

@@ -3,7 +3,7 @@ package dev.ykvlv.melo.application.service;
 
 import dev.ykvlv.melo.domain.entity.Artist;
 import dev.ykvlv.melo.domain.entity.User;
-import dev.ykvlv.melo.domain.type.MusicService;
+import dev.ykvlv.melo.commons.type.MusicService;
 import lombok.NonNull;
 
 import java.util.Set;

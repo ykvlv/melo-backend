@@ -38,6 +38,10 @@ public class Event {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
+    @NonNull
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
     @Column(name = "photo_url")
     private String photoUrl;
 

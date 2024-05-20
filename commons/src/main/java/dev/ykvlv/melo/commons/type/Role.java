@@ -1,4 +1,4 @@
-package dev.ykvlv.melo.domain.type;
+package dev.ykvlv.melo.commons.type;
 
 import org.springframework.security.core.GrantedAuthority;
 

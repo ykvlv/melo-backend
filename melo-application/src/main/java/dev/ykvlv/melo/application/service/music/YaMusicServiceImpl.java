@@ -3,6 +3,8 @@ package dev.ykvlv.melo.application.service.music;
 
 import dev.ykvlv.melo.application.MeloProperties;
 import dev.ykvlv.melo.application.config.Constants;
+import dev.ykvlv.melo.application.service.UserService;
+import dev.ykvlv.melo.domain.entity.User;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
@@ -20,6 +22,7 @@ public class YaMusicServiceImpl implements YaMusicService {
 
     private final MeloProperties meloProperties;
     private final RestTemplate restTemplate;
+    private final UserService userService;
 
     @NonNull
     @Override

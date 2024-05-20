@@ -1,6 +1,6 @@
 package dev.ykvlv.melo.domain.entity;
 
-import dev.ykvlv.melo.domain.type.Role;
+import dev.ykvlv.melo.commons.type.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

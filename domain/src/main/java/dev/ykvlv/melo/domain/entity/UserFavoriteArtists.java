@@ -1,7 +1,6 @@
 package dev.ykvlv.melo.domain.entity;
 
-import dev.ykvlv.melo.domain.type.MusicService;
-import dev.ykvlv.melo.domain.type.Role;
+import dev.ykvlv.melo.commons.type.MusicService;
 import jakarta.persistence.*;
 import lombok.*;
 

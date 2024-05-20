@@ -4,20 +4,15 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Getter
 @SuperBuilder
-public class UserResponse {
+public class SearchArtistsResponse {
 
     @NonNull
-    private String username;
+    private PagingResult pagingResult;
 
     @NonNull
-    private String registeredAt;
-
-    @NonNull
-    private String role;
-
-    @NonNull
-    private String cityName;
-
+    private List<ArtistResponse> artistResponse;
 }

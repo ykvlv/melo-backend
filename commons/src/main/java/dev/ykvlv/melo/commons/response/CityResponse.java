@@ -6,18 +6,11 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class UserResponse {
+public class CityResponse {
 
     @NonNull
-    private String username;
+    private Long id;
 
     @NonNull
-    private String registeredAt;
-
-    @NonNull
-    private String role;
-
-    @NonNull
-    private String cityName;
-
+    private String name;
 }

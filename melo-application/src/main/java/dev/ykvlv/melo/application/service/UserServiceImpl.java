@@ -9,7 +9,7 @@ import dev.ykvlv.melo.domain.entity.User;
 import dev.ykvlv.melo.domain.mapper.ArtistMapper;
 import dev.ykvlv.melo.domain.mapper.UserMapper;
 import dev.ykvlv.melo.domain.repository.UserRepository;
-import dev.ykvlv.melo.domain.type.MusicService;
+import dev.ykvlv.melo.commons.type.MusicService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
