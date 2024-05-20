@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class SearchEventsRequest {
 
-    private Boolean onlyWithFavoriteArtists;
+    private Boolean onlyFavoriteArtists;
     private Boolean anyCity;
 
     @NullOrNotBlank(message = "Имя артиста может отсутствовать но не должен быть пустым")

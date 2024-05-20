@@ -38,4 +38,7 @@ public class UserFavoriteArtists {
     @Column(name = "music_service", nullable = false)
     private MusicService musicService;
 
+    @NonNull
+    @Column(name = "banned", nullable = false)
+    private Boolean banned;
 }

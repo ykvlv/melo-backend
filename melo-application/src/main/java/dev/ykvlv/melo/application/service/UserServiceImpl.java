@@ -87,14 +87,9 @@ public class UserServiceImpl implements UserService {
         return getByUsername(username);
     }
 
-    /**
-     * Получить пользователя по имени
-     *
-     * @param username имя пользователя
-     * @return пользователь
-     */
     @NonNull
-    private User getByUsername(@NonNull String username) {
+    @Override
+    public User getByUsername(@NonNull String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new BEWrapper(BusinessException.USER_NOT_FOUND, username));
     }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/artist")
 public class ArtistController {
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<SearchArtistsResponse> search(@Validated @RequestBody SearchEventsRequest request,
                                                         Authentication authentication) {
         // TODO TBD

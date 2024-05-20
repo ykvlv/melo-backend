@@ -31,30 +31,28 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
-
-        // Получаем токен из заголовка
+        //1. Получаем токен из заголовка
         var authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, Constants.BEARER)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // Обрезаем префикс и получаем имя пользователя из токена
+        //2. Обрезаем префикс и получаем имя пользователя из токена
         var jwt = authHeader.substring(Constants.BEARER.length());
         var username = jwtUtil.extractUserName(jwt);
 
+        //3. Проверка перед аутентификацией
         if (StringUtils.isNotEmpty(username) && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.loadUserByUsername(username);
 
-            // Если токен валиден, то аутентифицируем пользователя
+            //4. Если токен валиден, то аутентифицируем пользователя
             if (jwtUtil.isTokenValid(jwt, userDetails)) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
 
+                //5. Установить аутентификацию
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
-                );
+                        userDetails, null, userDetails.getAuthorities());
 
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 context.setAuthentication(authToken);
