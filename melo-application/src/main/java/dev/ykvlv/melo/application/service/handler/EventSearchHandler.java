@@ -1,19 +1,25 @@
-package dev.ykvlv.melo.application.service.search;
+package dev.ykvlv.melo.application.service.handler;
 
 import dev.ykvlv.melo.application.exception.BEWrapper;
 import dev.ykvlv.melo.application.exception.BusinessException;
+import dev.ykvlv.melo.application.service.UserService;
+import dev.ykvlv.melo.commons.response.PagingResult;
+import dev.ykvlv.melo.commons.response.SearchEventsResponse;
 import dev.ykvlv.melo.domain.entity.*;
+import dev.ykvlv.melo.domain.mapper.EventMapper;
 import jakarta.persistence.criteria.*;
 import dev.ykvlv.melo.commons.request.search.SearchEventsRequest;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 import org.springframework.data.jpa.support.PageableUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +27,35 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class SearchEventService {
+public class EventSearchHandler {
 
     @PersistenceContext
     private final EntityManager entityManager;
+    private final UserService userService;
+    private final EventMapper eventMapper;
 
-    public Slice<Event> searchEvents(SearchEventsRequest searchEventsRequest, User user) {
+    @NonNull
+    @Transactional(readOnly = true)
+    public SearchEventsResponse search(@NonNull SearchEventsRequest searchEventsRequest, String username) {
+        var user = userService.getByUsername(username);
+
+        var slice = searchEvents(searchEventsRequest, user);
+
+        var events = slice.getContent().stream()
+                .map(eventMapper::map)
+                .toList();
+
+        return SearchEventsResponse.builder()
+                .pagingResult(PagingResult.builder()
+                        .pageSize(slice.getSize())
+                        .pageNumber(slice.getNumber())
+                        .morePagesAvailable(slice.hasNext())
+                        .build())
+                .events(events)
+                .build();
+    }
+
+    private Slice<Event> searchEvents(SearchEventsRequest searchEventsRequest, User user) {
         CriteriaQuery<Event> cq = createCriteriaQuery(searchEventsRequest, user);
 
         var pagingOptions = searchEventsRequest.getPagingOptionsRequest();
