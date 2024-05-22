@@ -1,11 +1,12 @@
 package dev.ykvlv.melo.application.service;
 
 import dev.ykvlv.melo.commons.response.EventResponse;
+import dev.ykvlv.melo.commons.response.ExtendedEventResponse;
 import lombok.NonNull;
 
 public interface EventService {
 
     @NonNull
-    EventResponse read(@NonNull Long id);
+    ExtendedEventResponse read(@NonNull Long id);
 
 }

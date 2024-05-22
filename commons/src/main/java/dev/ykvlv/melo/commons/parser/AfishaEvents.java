@@ -30,22 +30,46 @@ public class AfishaEvents implements ParserType {
         public static class Event {
             private String url;
             private String title;
+            private Image image;
+
+            @Data
+            public static class Image {
+                private Sizes sizes;
+
+                @Data
+                public static class Sizes {
+                    private EventCoverL2x eventCoverL2x;
+
+                    @Data
+                    public static class EventCoverL2x {
+                        private String url;
+                    }
+                }
+            }
+
         }
 
         @Data
         public static class ScheduleInfo {
             private String dateStarted;
-            private Place oneOfPlaces;
+            private OneOfPlaces oneOfPlaces;
 
             @Data
-            public static class Place {
+            public static class OneOfPlaces {
                 private String title;
                 private String address;
                 private City city;
+                private Coordinates coordinates;
 
                 @Data
                 public static class City {
                     private String name;
+                }
+
+                @Data
+                public static class Coordinates {
+                    private Double longitude;
+                    private Double latitude;
                 }
 
             }

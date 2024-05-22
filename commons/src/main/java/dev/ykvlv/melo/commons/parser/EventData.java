@@ -17,4 +17,7 @@ public class EventData {
     private String stageName;
     @NonNull
     private String cityName;
+    private String photoUrl;
+    private String longitude;
+    private String latitude;
 }

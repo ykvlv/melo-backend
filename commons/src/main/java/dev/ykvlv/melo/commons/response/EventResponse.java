@@ -24,5 +24,6 @@ public class EventResponse {
     @NonNull
     private String stageName;
     private String photoUrl;
+    private String afishaUrl;
     private String artistPhotoUrl;
 }

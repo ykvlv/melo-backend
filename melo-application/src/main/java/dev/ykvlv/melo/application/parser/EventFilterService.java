@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -142,16 +143,27 @@ public class EventFilterService {
     private void saveEvent(@NonNull EventData eventData, @NonNull Artist artist, @NonNull Stage stage) {
         var date = eventData.getDate();
 
-        Optional<Event> event = eventRepository.findByArtistAndStageAndDate(artist, stage, date);
+        var optionalEvent = eventRepository.findByArtistAndStageAndDate(artist, stage, date);
 
-        if (event.isEmpty()) {
+        // TODO перенести на мапер
+        if (optionalEvent.isEmpty()) {
             eventRepository.save(Event.builder()
                     .artist(artist)
                     .stage(stage)
                     .date(date)
+                    .createdAt(LocalDateTime.now())
+                    .photoUrl(eventData.getPhotoUrl())
+                    .kassirUrl(null) // TODO добавить определение URL
+                    .afishaUrl(eventData.getUrl()) // TODO добавить URL
                     .build());
 
             log.info("Событие {} сохранено", eventData);
+        } else {
+            // TODO параметры то всякие могут меняться
+            var event = optionalEvent.get();
+            event.setPhotoUrl(eventData.getPhotoUrl());
+            event.setAfishaUrl(eventData.getUrl());
+            eventRepository.save(event);
         }
     }
 }

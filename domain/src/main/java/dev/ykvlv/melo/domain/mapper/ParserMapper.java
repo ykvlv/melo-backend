@@ -21,6 +21,7 @@ public abstract class ParserMapper {
     @Mapping(target = "url", source = "event.url")
     @Mapping(target = "stageName", source = "scheduleInfo.oneOfPlaces.title")
     @Mapping(target = "cityName", source = "scheduleInfo.oneOfPlaces.city.name")
+    @Mapping(target = "photoUrl", source = "event.image.sizes.eventCoverL2x.url")
     public abstract EventData map(AfishaEvents.AfishaEvent entity);
 
     @Named("stringToLocalDate")
