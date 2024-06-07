@@ -43,7 +43,7 @@ public interface UserService extends UserDetailsService {
     @NonNull
     User getByUsername(@NonNull String username);
 
-    void changeYaMusicCredentials(@NonNull String username, @NonNull String yaMusicCredentials);
+    User changeYaMusicCredentials(@NonNull String username, @NonNull String yaMusicCredentials);
 
     @NonNull
     MusicServiceResponse getYaMusicInfo(@NonNull String username);

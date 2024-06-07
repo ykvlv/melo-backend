@@ -5,11 +5,10 @@ import lombok.Data;
 import java.util.ArrayList;
 
 @Data
-public class AfishaEvents implements ParserType {
+public class AfishaEvents {
     private Paging paging;
     private ArrayList<AfishaEvent> data;
 
-    @Override
     public boolean hasNext() {
         return paging.getOffset() + paging.getLimit() < paging.getTotal();
     }

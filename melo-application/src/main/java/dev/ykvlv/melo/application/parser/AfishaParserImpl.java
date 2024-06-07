@@ -9,20 +9,30 @@ import lombok.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
 
 @Service
-public class AfishaParserImpl extends AbstractParser<AfishaEvents> {
+public class AfishaParserImpl implements ParserStrategy {
+
+    private final static int LIMIT = 20;
 
     private final ParserMapper parserMapper;
+    private final MeloParserProperties.EventParserProperties parserProperties;
+    private final WebClient webClient;
+    private final FilterService filterService;
 
-    public AfishaParserImpl(MeloParserProperties meloParserProperties,
-                            EventFilterService eventFilterService,
-                            ParserMapper parserMapper) {
-        super(meloParserProperties.getAfisha(), eventFilterService);
+    public AfishaParserImpl(ParserMapper parserMapper,
+                            MeloParserProperties meloParserProperties,
+                            FilterService filterService) {
         this.parserMapper = parserMapper;
+        this.parserProperties = meloParserProperties.getAfisha();
+        this.filterService = filterService;
+        this.webClient = WebClient.builder()
+                .defaultHeaders(httpHeaders -> httpHeaders.addAll(parserProperties.getHeaders()))
+                .build();
     }
 
     @Override
@@ -31,36 +41,45 @@ public class AfishaParserImpl extends AbstractParser<AfishaEvents> {
         params.add("city", "saint-petersburg"); // без этого параметра запрос не проходит
 
         // Парсим данные городов
-        AfishaCities cities = parseWithParams(parserProperties.getCitiesUrl(), params, AfishaCities.class);
+        AfishaCities cities = webClient.get()
+                .uri(parserProperties.getCitiesUrl(), uriBuilder -> uriBuilder.queryParams(params).build())
+                .retrieve()
+                .bodyToMono(AfishaCities.class)
+                .block();
 
+        // Парсим события каждого города
         for (AfishaCities.AfishaCity city : cities.getData()) {
             int offset = 0;
-            int limit = 20;
 
+            // Устанавливаем параметры в запрос
             params.set("city", city.getId());
             params.set("hasMixed", String.valueOf(0));
-            params.set("limit", String.valueOf(limit));
+            params.set("limit", String.valueOf(LIMIT));
             params.set("offset", String.valueOf(offset));
 
             AfishaEvents eventsData;
             do {
-                eventsData = parseWithParams(parserProperties.getEventsUrl(), params, AfishaEvents.class);
+                // Отправляем запросы пачками по 20
+                eventsData = webClient.get()
+                        .uri(parserProperties.getEventsUrl(), uriBuilder -> uriBuilder.queryParams(params).build())
+                        .retrieve()
+                        .bodyToMono(AfishaEvents.class)
+                        .block();
 
-                if (eventsData == null) {
-                    break;
-                }
+                // Преобразуем полученные данные в понятные приложению
+                List<EventData> data = eventsData.getData().stream().map(parserMapper::map).toList();
 
-                List<EventData> data = map(eventsData);
+                // Сохраняем данные через фильтрационный сервис
+                filterService.saveData(data);
 
-                eventFilterService.saveData(data);
-
-                params.set("offset", String.valueOf(offset += limit));
+                params.set("offset", String.valueOf(offset += LIMIT));
             } while (eventsData.hasNext());
         }
     }
 
     @Override
-    protected List<EventData> map(@NonNull AfishaEvents entity) {
-        return entity.getData().stream().map(parserMapper::map).toList();
+    public void handleError(@NonNull Exception e) {
+        e.printStackTrace();
     }
+
 }

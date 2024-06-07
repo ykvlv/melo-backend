@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface UserFavoriteArtistsRepository extends JpaRepository<UserFavoriteArtists, Long> {
     List<UserFavoriteArtists> findAllByUserAndMusicService(User user, MusicService musicService);
+    List<UserFavoriteArtists> findByUserAndMusicServiceAndArtistName(User user, MusicService musicService, String artistName);
 }

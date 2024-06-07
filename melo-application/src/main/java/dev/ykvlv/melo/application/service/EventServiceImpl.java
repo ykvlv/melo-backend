@@ -2,7 +2,6 @@ package dev.ykvlv.melo.application.service;
 
 import dev.ykvlv.melo.application.exception.BEWrapper;
 import dev.ykvlv.melo.application.exception.BusinessException;
-import dev.ykvlv.melo.commons.response.EventResponse;
 import dev.ykvlv.melo.commons.response.ExtendedEventResponse;
 import dev.ykvlv.melo.domain.entity.Event;
 import dev.ykvlv.melo.domain.mapper.EventMapper;

@@ -15,5 +15,5 @@ public interface ParserStrategy {
      * @param e Исключение, возникшее во время парсинга
      */
     void handleError(@NonNull Exception e);
-
 }
+

@@ -23,7 +23,4 @@ public class City {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "timezone")
-    private String timezone;
-
 }

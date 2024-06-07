@@ -1,11 +1,14 @@
 package dev.ykvlv.melo.commons.parser;
 
 import lombok.Data;
+import lombok.NonNull;
+
 import java.util.ArrayList;
 
 @Data
 public class AfishaCities {
 
+    @NonNull
     private ArrayList<AfishaCity> data;
 
     @Data

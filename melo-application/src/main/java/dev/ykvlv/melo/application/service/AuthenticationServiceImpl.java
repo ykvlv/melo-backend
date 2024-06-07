@@ -30,7 +30,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtAuthenticationResponse signUp(@NonNull AuthRequest request) {
 
         var user = User.builder()
-                .username(request.getUsername())
+                .username(request.getUsername().toLowerCase())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .registeredAt(LocalDate.now())
                 .city(cityRepository.getReferenceById(1L))
@@ -45,16 +45,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @NonNull
     public JwtAuthenticationResponse signIn(@NonNull AuthRequest request) {
-        if (!userService.existsByUsername(request.getUsername())) {
-            throw new BEWrapper(BusinessException.USER_NOT_FOUND, request.getUsername());
+        var username = request.getUsername().toLowerCase();
+
+        if (!userService.existsByUsername(username)) {
+            throw new BEWrapper(BusinessException.USER_NOT_FOUND, username);
         }
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
+                username,
                 request.getPassword()
         ));
 
-        var user = userService.loadUserByUsername(request.getUsername());
+        var user = userService.loadUserByUsername(username);
 
         var jwt = jwtUtil.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).build();

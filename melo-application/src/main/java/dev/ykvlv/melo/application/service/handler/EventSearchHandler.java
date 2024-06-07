@@ -21,6 +21,7 @@ import org.springframework.data.jpa.support.PageableUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -109,6 +110,11 @@ public class EventSearchHandler {
         var anyCity = request.getAnyCity();
         if (anyCity == null || !anyCity) {
             predicates.add(builder.equal(joinCity.get(City_.id), user.getCity().getId()));
+        }
+
+        var onlyActual = request.getOnlyActual();
+        if (onlyActual != null && onlyActual) {
+            predicates.add(builder.greaterThanOrEqualTo(root.get(Event_.date), LocalDate.now()));
         }
 
         var onlyFavoriteArtists = request.getOnlyFavoriteArtists();

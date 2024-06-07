@@ -1,20 +1,20 @@
 package dev.ykvlv.melo.application.parser;
 
+import dev.ykvlv.melo.commons.parser.ArtistData;
 import dev.ykvlv.melo.commons.parser.EventData;
-import dev.ykvlv.melo.domain.entity.Artist;
-import dev.ykvlv.melo.domain.entity.City;
-import dev.ykvlv.melo.domain.entity.Event;
-import dev.ykvlv.melo.domain.entity.Stage;
+import dev.ykvlv.melo.commons.type.MusicService;
+import dev.ykvlv.melo.domain.entity.*;
 import dev.ykvlv.melo.domain.entity.filter.ArtistFilter;
 import dev.ykvlv.melo.domain.entity.filter.CityFilter;
 import dev.ykvlv.melo.domain.entity.filter.StageFilter;
 import dev.ykvlv.melo.domain.entity.filter.StageFilterId;
+import dev.ykvlv.melo.domain.repository.ArtistRepository;
 import dev.ykvlv.melo.domain.repository.EventRepository;
+import dev.ykvlv.melo.domain.repository.UserFavoriteArtistsRepository;
 import dev.ykvlv.melo.domain.repository.filter.ArtistFilterRepository;
 import dev.ykvlv.melo.domain.repository.filter.CityFilterRepository;
 import dev.ykvlv.melo.domain.repository.filter.StageFilterRepository;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +26,13 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EventFilterService {
+public class FilterService {
     private final CityFilterRepository cityFilterRepository;
     private final StageFilterRepository stageFilterRepository;
     private final ArtistFilterRepository artistFilterRepository;
     private final EventRepository eventRepository;
+    private final UserFavoriteArtistsRepository userFavoriteArtistsRepository;
+    private final ArtistRepository artistRepository;
 
     @Transactional
     public void saveData(@NonNull List<EventData> data) {
@@ -138,6 +140,59 @@ public class EventFilterService {
 
         // Если нашел и площадка не в черном списке – вернет площадку
         return Optional.ofNullable(stageFilter.getStage());
+    }
+
+    public void addFavoriteArtist(@NonNull User user, @NonNull ArtistData artistData) {
+        var artistName = artistData.getArtistName();
+
+        if (artistName.equals("КИНО")) {
+            System.out.println("HELO");
+        }
+
+        var musicService = artistData.getMusicService();
+
+        var favoriteArtists = userFavoriteArtistsRepository.findByUserAndMusicServiceAndArtistName(
+                user, musicService, artistName);
+
+        if (favoriteArtists.isEmpty()) {
+
+            var optionalArtist = artistRepository.findByName(artistName);
+            var artist = optionalArtist.orElseGet(() -> {
+                var newArtist = Artist.builder()
+                        .name(artistName)
+                        .photoUrl(artistData.getPhotoUrl())
+                        .build();
+
+
+                newArtist = artistRepository.save(newArtist);
+
+                var optionalFilterArtist = artistFilterRepository.findById(artistName);
+                if (optionalFilterArtist.isPresent()) {
+                    var filterArtist = optionalFilterArtist.get();
+                    filterArtist.setArtist(newArtist);
+                    artistFilterRepository.save(filterArtist);
+                } else {
+                    var newFilterArtist = ArtistFilter.builder()
+                            .name(artistName)
+                            .banned(false)
+                            .artist(newArtist)
+                            .build();
+
+                    artistFilterRepository.save(newFilterArtist);
+                }
+
+                return newArtist;
+            });
+
+            var userFavoriteArtists = UserFavoriteArtists.builder()
+                    .user(user)
+                    .musicService(musicService)
+                    .artist(artist)
+                    .banned(false)
+                    .build();
+
+            userFavoriteArtistsRepository.save(userFavoriteArtists);
+        }
     }
 
     private void saveEvent(@NonNull EventData eventData, @NonNull Artist artist, @NonNull Stage stage) {

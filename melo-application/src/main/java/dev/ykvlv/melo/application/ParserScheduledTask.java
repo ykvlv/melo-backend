@@ -10,12 +10,12 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 @RequiredArgsConstructor
-public class EventsParserTask {
+public class ParserScheduledTask {
 
     private final List<ParserStrategy> parsers;
 
-    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.DAYS, initialDelay = 1)
-    public void runParsers() {
+    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.DAYS)
+    public void parseDaily() {
         for (ParserStrategy parser : parsers) {
             try {
                 parser.parse();
@@ -24,5 +24,5 @@ public class EventsParserTask {
             }
         }
     }
-
 }
+

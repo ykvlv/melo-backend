@@ -14,6 +14,7 @@
     <properties>
         <springdoc-openapi-starter-webmvc-ui.version>2.5.0</springdoc-openapi-starter-webmvc-ui.version>
         <jjwt.version>0.12.3</jjwt.version>
+        <guava.version>33.2.0-jre</guava.version>
         <org-json.version>20240303</org-json.version>
     </properties>
 
@@ -78,6 +79,11 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>${jjwt.version}</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
 
         <dependency>

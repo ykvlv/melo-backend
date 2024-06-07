@@ -54,10 +54,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeYaMusicCredentials(@NonNull String username, @NonNull String yaMusicCredentials) {
+    public User changeYaMusicCredentials(@NonNull String username, @NonNull String yaMusicCredentials) {
         User user = getByUsername(username);
         user.setYaMusicCredentials(yaMusicCredentials);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @NonNull

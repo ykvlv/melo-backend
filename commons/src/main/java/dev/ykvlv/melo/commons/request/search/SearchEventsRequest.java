@@ -15,6 +15,7 @@ public class SearchEventsRequest {
 
     private Boolean onlyFavoriteArtists;
     private Boolean anyCity;
+    private Boolean onlyActual;
 
     @NullOrNotBlank(message = "Имя артиста может отсутствовать но не должен быть пустым")
     private String artistName;

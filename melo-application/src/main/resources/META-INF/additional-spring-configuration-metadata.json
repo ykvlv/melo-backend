@@ -9,6 +9,26 @@
       "name": "melo.parser.afisha.headers.Accept",
       "type": "java.lang.String",
       "description": "Ну потом куда-нибудь может и перенесу."
+    },
+    {
+      "name": "melo.parser.ya-music.headers.Accept",
+      "type": "java.lang.String",
+      "description": "Ну потом куда-нибудь может и перенесу."
+    },
+    {
+      "name": "melo.parser.ya-music.headers.Referer",
+      "type": "java.lang.String",
+      "description": "Ну потом куда-нибудь может и перенесу."
+    },
+    {
+      "name": "melo.parser.kassir.headers.Accept",
+      "type": "java.lang.String",
+      "description": "Ну потом куда-нибудь может и перенесу."
+    },
+    {
+      "name": "melo.parser.vk-music.headers.Accept",
+      "type": "java.lang.String",
+      "description": "Ну потом куда-нибудь может и перенесу."
     }
   ]
 }
