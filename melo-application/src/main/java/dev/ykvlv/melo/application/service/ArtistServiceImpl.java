@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,11 +22,12 @@ public class ArtistServiceImpl implements ArtistService {
     @NonNull
     @Override
     @Transactional(readOnly = true)
-    public Set<Artist> findAllByUserAndMusicService(@NonNull User user, @NonNull MusicService musicService) {
+    public List<Artist> findAllByUserAndMusicService(@NonNull User user, @NonNull MusicService musicService) {
         return userFavoriteArtistsRepository
                 .findAllByUserAndMusicService(user, musicService)
                 .stream()
                 .map(UserFavoriteArtists::getArtist)
-                .collect(Collectors.toSet());
+                .sorted((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()))
+                .collect(Collectors.toList());
     }
 }

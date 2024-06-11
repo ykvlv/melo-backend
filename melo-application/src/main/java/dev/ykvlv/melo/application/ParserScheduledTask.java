@@ -14,7 +14,7 @@ public class ParserScheduledTask {
 
     private final List<ParserStrategy> parsers;
 
-    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.DAYS)
+    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.DAYS, initialDelay = 1)
     public void parseDaily() {
         for (ParserStrategy parser : parsers) {
             try {

@@ -6,7 +6,7 @@ import dev.ykvlv.melo.domain.entity.User;
 import dev.ykvlv.melo.commons.type.MusicService;
 import lombok.NonNull;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ArtistService {
 
@@ -17,6 +17,6 @@ public interface ArtistService {
      * @return список артистов
      */
     @NonNull
-    Set<Artist> findAllByUserAndMusicService(@NonNull User user, @NonNull MusicService musicService);
+    List<Artist> findAllByUserAndMusicService(@NonNull User user, @NonNull MusicService musicService);
 
 }

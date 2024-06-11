@@ -6,5 +6,6 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder
 public class ExtendedEventResponse extends EventResponse {
-
+    private Double latitude;
+    private Double longitude;
 }

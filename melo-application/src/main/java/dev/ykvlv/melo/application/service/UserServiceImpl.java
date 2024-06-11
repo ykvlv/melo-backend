@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -70,9 +71,9 @@ public class UserServiceImpl implements UserService {
             return MusicServiceResponse.builder().connected(false).build();
         }
 
-        Set<ArtistResponse> artists = artistService
+        List<ArtistResponse> artists = artistService
                 .findAllByUserAndMusicService(user, MusicService.YANDEX_MUSIC)
-                .stream().map(artistMapper::map).collect(Collectors.toSet());
+                .stream().map(artistMapper::map).collect(Collectors.toList());
 
         return MusicServiceResponse.builder()
                 .connected(user.getYaMusicCredentials() != null)

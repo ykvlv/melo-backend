@@ -9,13 +9,11 @@ import dev.ykvlv.melo.commons.type.MusicService;
 import dev.ykvlv.melo.domain.entity.User;
 import lombok.NonNull;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-@Service
 public class YaMusicParserImpl implements ParserStrategy {
     private static final int BATCH_SIZE = 49;
 
@@ -61,7 +59,8 @@ public class YaMusicParserImpl implements ParserStrategy {
                             .with("lang", "ru")
                             .with("overembed", "false"))
                     .retrieve()
-                    .bodyToMono(new ParameterizedTypeReference<List<YaMusicTrack>>() {})
+                    .bodyToMono(new ParameterizedTypeReference<List<YaMusicTrack>>() {
+                    })
                     .block();
 
             // Добавление каждого артиста в избранное
@@ -86,7 +85,16 @@ public class YaMusicParserImpl implements ParserStrategy {
             return null;
         }
         var coverUri = cover.getUri();
-        if (coverUri != null && coverUri.endsWith("%%")) {
+
+        if (coverUri == null) {
+            return null;
+        }
+
+        if (!coverUri.startsWith("https://")) {
+            coverUri = "https://" + coverUri;
+        }
+
+        if (coverUri.endsWith("%%")) {
             // Удаляем "%%" с конца строки и добавляем "/300x300"
             return coverUri.substring(0, coverUri.length() - 2) + "300x300";
         }

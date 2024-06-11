@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @SuperBuilder
@@ -16,5 +16,5 @@ public class MusicServiceResponse {
 
     private String login;
 
-    private Set<ArtistResponse> artists;
+    private List<ArtistResponse> artists;
 }

@@ -19,6 +19,8 @@ public abstract class EventMapper {
     @Mapping(target = "artistPhotoUrl", source = "artist.photoUrl")
     @Mapping(target = "cityName", source = "stage.city.name")
     @Mapping(target = "stageName", source = "stage.name")
+    @Mapping(target = "latitude", source = "stage.latitude")
+    @Mapping(target = "longitude", source = "stage.longitude")
     public abstract ExtendedEventResponse mapFull(Event entity);
 
 }
